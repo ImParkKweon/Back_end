@@ -6,9 +6,9 @@ router.use(cors());
 
  db =require("../db.js");
 router.use(bodyParser.urlencoded({extended : true}));
+router.use(bodyParser.json()); 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-router.use(bodyParser.json()); 
 const session=require('express-session');
 router.use(session({secret:"secret",resave :true,saveUninitialized:false}));
 router.use(passport.initialize());
@@ -37,7 +37,7 @@ router.post('/login', function(req, res, next) {
         return res.send({ success: false });
       }
       console.log('true');
-      return res.send({ success: true });
+      return res.send({ success: false });
     });
   })(req, res, next);
 });

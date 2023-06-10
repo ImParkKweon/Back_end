@@ -1,0 +1,59 @@
+pipeline {
+	environment {
+		DOCKERHUB_CRED = credentials('docker_credentials')
+	}
+	agent any
+	stages {
+		stage("Checkout") {
+			steps {
+				checkout scm
+				/*SCM 에서 소스 추출하기 때문에 소스를 체크아웃 한다.*/
+			}
+		}
+		stage("Build") {
+			steps {
+                script {
+					sh "docker build -t hyunjun1325/backend:$BUILD_NUMBER ."
+				}
+			}
+		}
+		stage("latest_image_tag") {
+			steps {
+				script {
+					sh "docker image tag hyunjun1325/backend:$BUILD_NUMBER hyunjun1325/backend"
+				}
+			}
+		}
+		stage("Docker_login") {
+			steps {
+				sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
+			}
+		}
+		stage("Push_image") {
+			steps {
+				script {
+					sh "docker push hyunjun1325/backend:$BUILD_NUMBER"
+				}
+			}
+		}
+		
+		stage("Push_image_latest") {
+			steps {
+				script {
+					sh "docker push hyunjun1325/backend"
+				}
+			}
+		}
+		stage('Clean_image') {
+			steps {
+				sh "docker rmi hyunjun1325/backend:$BUILD_NUMBER"
+			}
+		}
+		stage('Clean_latest_image') {
+			steps {
+				sh "docker rmi hyunjun1325/backend"
+			}
+		}
+	}
+}
+
