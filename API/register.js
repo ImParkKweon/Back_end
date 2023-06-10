@@ -5,11 +5,12 @@ var cors = require('cors');
 router.use(cors());
 
  db =require("../db.js");
-
+ router.use(bodyParser.urlencoded({extended : true}));
+ router.use(bodyParser.json()); 
  router.post('/register',function(req,res){
     var username = req.body.username;
     var password = req.body.pwd;
-
+    console.log(req.body);
     if (username && password) {
         
         db.query('SELECT * FROM usertable WHERE username = ?', [username], function(error, results, fields) { 
@@ -17,6 +18,7 @@ router.use(cors());
             if (results.length <= 0 && password) {     
                 db.query('INSERT INTO usertable (username, password) VALUES(?,?)', [username, password], function (error, data) {
                     if (error) throw error2;
+                    
                     res.send({success :true });
                 });
             } 

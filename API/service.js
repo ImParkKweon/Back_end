@@ -6,6 +6,7 @@ router.use(cors());
 
 const db =require('../db.js');
 router.use(bodyParser.urlencoded({extended : true}));
+router.use(bodyParser.json()); 
 
 
 router.post('/service',function(req,res){
