@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 const bodyParser =require("body-parser");
 
-var authRouter = require('./lib_login/auth');
-var register = require('./lib_login/register');
-var service =require('./lib_service/service');
-var user =require('./lib_user/user');
+var authRouter = require('./API/auth');
+var register = require('./API/register');
+var service =require('./liAPI/service');
+var user =require('.API/user');
 app.use(bodyParser.urlencoded({extended : true}));
 
 
