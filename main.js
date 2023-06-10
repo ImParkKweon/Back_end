@@ -4,8 +4,8 @@ const bodyParser =require("body-parser");
 
 var authRouter = require('./API/auth');
 var register = require('./API/register');
-var service =require('./liAPI/service');
-var user =require('.API/user');
+var service =require('./API/service');
+var user =require('./API/user');
 app.use(bodyParser.urlencoded({extended : true}));
 
 
