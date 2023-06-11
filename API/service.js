@@ -18,6 +18,7 @@ router.post('/service',function(req,res){
     var gpuCompany = req.body.gpuCompany;
     var volume = req.body.volume;
     var volumeCount =req.body.volumeCount;
+    var serviceNum = req.body.serviceNum;
 
     db.query('SELECT * FROM servicetable WHERE username = ?',[username], function(err,results,fields){
         if(err) throw error;
@@ -26,8 +27,8 @@ router.post('/service',function(req,res){
             res.send({success:false, message : '이미 서비스가 존재합니다'});
         }
         else{
-            db.query('INSERT INTO servicetable (username, os, gpu , cpu,gpuCompany,ram,volume, volumeCount) VALUES(?,?,?,?,?,?,?,?)',
-            [username,os,gpu,cpu,gpuCompany,ram ,volume,volumeCount] ,function(err,data){
+            db.query('INSERT INTO servicetable (username, os, gpu , cpu,gpuCompany,ram,volume, volumeCount, serviceNum) VALUES(?,?,?,?,?,?,?,?,?)',
+            [username,os,gpu,cpu,gpuCompany,ram ,volume,volumeCount,serviceNum] ,function(err,data){
                 res.send({success : true});
             })
         }
