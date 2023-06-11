@@ -10,7 +10,7 @@ router.use(bodyParser.json());
 
 
 
- router.get('/user',function(req,res){
+ router.post('/user',function(req,res){
     var username = req.body.username;
     db.query('SELECT os,cpu,ram,gpu,gpuCompany,volume,volumeCount FROM servicetable WHERE username = ?',[username], function(err,results,fields){
         if(results.length>0){
