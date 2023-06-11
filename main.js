@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser =require("body-parser");
+var cors = require('cors');
+router.use(cors());
 
 var authRouter = require('./API/auth');
 var register = require('./API/register');
