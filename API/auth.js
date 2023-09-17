@@ -19,7 +19,7 @@ router.post('/login', function(req, res, next) {
   const { id, pw } = req.body;
   
   if (!id || !pw) {
-    console.log('false');
+    console.log('false1');
     return res.send({ success: false });
   }
   passport.authenticate('local', function(err, user, info) {
@@ -28,7 +28,7 @@ router.post('/login', function(req, res, next) {
       return res.send({ success: false });
     }
     if (!user) {
-      console.log('false');
+      console.log('false2');
       return res.send({ success: false });
     }
     req.logIn(user, function(err) {
