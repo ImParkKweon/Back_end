@@ -8,6 +8,7 @@ var authRouter = require('./API/auth');
 var register = require('./API/register');
 var service =require('./API/service');
 var user =require('./API/user');
+var flag =require('./API/flag');
 app.use(bodyParser.urlencoded({extended : true}));
 
 
@@ -19,3 +20,4 @@ app.use('/', authRouter);
 app.use('/', register);
 app.use('/', service);
 app.use('/', user);
+app.use('/', flag);

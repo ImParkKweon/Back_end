@@ -19,6 +19,8 @@ router.post('/service',function(req,res){
     var volume = req.body.volume;
     var volumeCount =req.body.volumeCount;
     var serviceNum = req.body.serviceNum;
+    
+
 
     db.query('SELECT * FROM servicetable WHERE username = ?',[username], function(err,results,fields){
         if(err) throw error;
