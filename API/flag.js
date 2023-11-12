@@ -7,19 +7,31 @@ router.use(cors());
 router.use(bodyParser.urlencoded({extended : true}));
 router.use(bodyParser.json()); 
 
+let flag = true
+
 router.post('/flag',function(req,res){
 
-    var setFlag = req.body.setFlag;
-
-    if(setFlag==true)
-    {
-        res.send({flag:1});
+    if (req.body.setFlag == 1) { 
+        flag = true
+    }else { 
+        flag = false
     }
-    else if(setFlag ==false)
-    {
-        res.send({flag:0});
-    }
+    
+    res.send({
+        flag: flag,
+        result: true,
+    })
 })
+
+router.get('/flag', function(req, res) { 
+    res.send({
+        flag: flag
+    })
+})
+
+
+
+
 
 
 module.exports = router;
