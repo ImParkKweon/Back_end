@@ -12,7 +12,7 @@ var flag =require('./API/flag');
 app.use(bodyParser.urlencoded({extended : true}));
 
 
-app.listen(8081,function(){
+app.listen(8080,function(){
     console.log('Hello Teahyeon');
 });//서버 오픈
 
